@@ -131,13 +131,6 @@ This project is licensed under the **MIT License** — free for personal and com
 
 ---
 
-## 🤝 Contributors
-
-* **[Siddhubollam9](https://github.com/Siddhubollam9)** – Core Developer
-* **Bhuvan Kodikonda** – Model Evaluation & Documentation
-
----
-
 ## 🌍 About
 
 **EcoVision** aims to promote sustainability through AI-driven waste management.
