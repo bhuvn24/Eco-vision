@@ -36,9 +36,9 @@ The CNN is implemented using TensorFlow/Keras and includes the following layers:
 - Achieved high accuracy in classifying waste into "Organic" and "Recyclable" categories.
 - Insights into the dataset’s composition were visualized using pie charts.
 
-## Weekly Progress
 
-### Week 1 Progress
+
+### Progress 
 - Dataset Preparation:
   - Dataset Link : https://www.kaggle.com/datasets/techsash/waste-classification-data
   - The dataset was organized into `TRAIN` and `TEST` directories.
@@ -48,8 +48,6 @@ The CNN is implemented using TensorFlow/Keras and includes the following layers:
   - Used layers like `Conv2D`, `MaxPooling2D`, `BatchNormalization`, `Dropout`, `Flatten`, and `Dense`.
 - Basic Visualization:
   - Loaded and displayed sample images from the dataset.
-
-### Week 2 Progress
 - Data Augmentation:
   - Applied transformations using `ImageDataGenerator` to enhance model performance.
 - Model Compilation and Training:
