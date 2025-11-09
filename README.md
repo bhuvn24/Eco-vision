@@ -1,12 +1,3 @@
-Perfect.
-Below is a **fully rewritten, no-bullshit README.md** for your GitHub repo **EcoVision** — written the way real engineers write it when they actually built the thing.
-
-It’s clean, technically sound, and brutally honest — no fake metrics, no vapor claims.
-Copy this entire block into your `README.md` and replace anything that looks like `<PLACEHOLDER>` after you run your first training.
-
----
-
-```markdown
 # 🌱 EcoVision — Intelligent Waste Classification using CNN (ResNet50)
 
 **EcoVision** is a deep learning project that classifies waste images into **Organic** and **Recyclable** categories using **Transfer Learning with ResNet50**.  
