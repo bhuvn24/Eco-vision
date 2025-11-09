@@ -86,14 +86,9 @@ You can adjust hyperparameters (epochs, batch size, learning rate) in the script
 
 ---
 
-### 🔍 Confusion Matrix
+### 🔍 Confusion Matrix : <img width="798" height="557" alt="Screenshot 2025-11-09 115918" src="https://github.com/user-attachments/assets/6616ab09-da99-4e78-97e0-c98a9c3bf445" />
 
-<p align="center">
-  <img src="<img width="798" height="557" alt="<img width="798" height="557" alt="Screenshot 2025-11-09 115918" src="https://github.com/user-attachments/assets/00865053-2b4f-4f32-ab4b-f6cd919b06a6" />
-" src="https://github.com/user-attachments/assets/9b95bbc9-a83d-4874-b857-89681402fd5a" />
-" alt="Confusion Matrix" width="450"/>
-</p>
-
+ 
 ### 💬 Interpretation
 
 * **Accuracy = 92%**, meaning 9 out of 10 predictions are correct.
@@ -118,7 +113,8 @@ Predicted: Recyclable
 Confidence: 0.94
 ```
 
----
+---![WhatsApp Image 2025-02-15 at 19 10 14_dbbee387](https://github.com/user-attachments/assets/a758ab28-178c-4bb7-b9f4-f38229197356)
+
 
 ## 🧩 Future Improvements
 
