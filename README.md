@@ -73,6 +73,7 @@ data/
 
 ---
 
+
 ## 🏗️ **Project Structure**
 ```
 
@@ -199,6 +200,9 @@ EcoVision integrates **Grad-CAM** to visualize *which image regions influenced p
 
 **App Preview**
 ![App Preview](samples/app_preview.png)
+![WhatsApp Image 2025-02-15 at 19 07 57_9544d4c9](https://github.com/user-attachments/assets/fc7f794c-bbe6-4718-b5cd-1618596710b4)
+![WhatsApp Image 2025-02-15 at 19 10 14_dbbee387](https://github.com/user-attachments/assets/126a534b-757a-4844-815d-f35432cf61b0)
+
 
 ---
 
