@@ -1,13 +1,4 @@
-Got it. Below is your **fully updated, professional, and ATS-friendly `README.md`** for your project — now titled **EcoVision**, with:
 
-✅ Badge section (Python, TensorFlow, Kaggle, Accuracy, etc.)
-✅ Model Performance (your classification report + confusion matrix)
-✅ Proper structure and visual clarity
-✅ Professional tone recruiters and collaborators respect
-
----
-
-````markdown
 # ♻️ EcoVision — CNN-Based Waste Classification
 
 <p align="center">
