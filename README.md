@@ -89,7 +89,8 @@ You can adjust hyperparameters (epochs, batch size, learning rate) in the script
 ### 🔍 Confusion Matrix
 
 <p align="center">
-  <img src="<img width="798" height="557" alt="Screenshot 2025-11-09 115918" src="https://github.com/user-attachments/assets/9b95bbc9-a83d-4874-b857-89681402fd5a" />
+  <img src="<img width="798" height="557" alt="<img width="798" height="557" alt="Screenshot 2025-11-09 115918" src="https://github.com/user-attachments/assets/00865053-2b4f-4f32-ab4b-f6cd919b06a6" />
+" src="https://github.com/user-attachments/assets/9b95bbc9-a83d-4874-b857-89681402fd5a" />
 " alt="Confusion Matrix" width="450"/>
 </p>
 
@@ -107,10 +108,10 @@ You can adjust hyperparameters (epochs, batch size, learning rate) in the script
 You can test the model with your own images:
 
 ```bash
-python predict.py --image path_to_image.jpg
+python predict.py --image test_image.jpg
 ```
 
-Expected output:
+output:
 
 ```
 Predicted: Recyclable
