@@ -1,3 +1,274 @@
+# 🌱 EcoVision — Waste Classification using Deep Learning
+
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.10-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Streamlit](https://img.shields.io/badge/Deploy-Streamlit-blue)
+
+---
+
+> **Goal:** Build an honest, explainable ML model for classifying waste as **Organic** or **Recyclable** — from training to deployment.
+
+---
+
+## 🧭 Project Overview
+
+**EcoVision** is a deep learning project that helps automatically identify waste types from images.  
+It uses **ResNet50 (transfer learning)** for image classification and adds **Grad-CAM** heatmaps to explain model decisions.  
+The system is fully reproducible, tested with **CI/CD**, and deployed as a **Streamlit web app**.
+
+---
+
+## 📊 Dataset
+
+- **Source:** [Kaggle – Waste Classification Data](https://www.kaggle.com/datasets/techsash/waste-classification-data)  
+- **Total Images:** 25,077  
+  - Organic: 13,966  
+  - Recyclable: 11,111  
+- **Split:** 70% Train / 15% Validation / 15% Test  
+- **Seed:** 42 (for reproducibility)
+
+Generate split:
+```bash
+python src/data_split.py --train_dir data/TRAIN --seed 42
+````
+
+Result file: `artifacts/data_split.json`
+
+---
+
+## 📁 Project Structure
+
+```
+EcoVision/
+├── app/                     # Streamlit web app
+├── src/                     # Scripts for training, testing, etc.
+│   ├── data_split.py
+│   ├── train_model.py
+│   ├── evaluate_model.py
+│   ├── ablation.py
+│   ├── evaluate_noise.py
+│   └── convert_to_tflite.py
+├── artifacts/               # All output files (models, metrics, plots)
+├── samples/gradcam_examples # Grad-CAM visual results
+├── tests/run_tests.py
+└── README.md
+```
+
+---
+
+## 🧱 Model Overview
+
+| Item                  | Details                                                                    |
+| --------------------- | -------------------------------------------------------------------------- |
+| **Base Model**        | ResNet50 (pretrained on ImageNet)                                          |
+| **Layers Trained**    | Last 40 layers                                                             |
+| **New Layers**        | GlobalAveragePooling → Dense(256, ReLU) → Dropout(0.5) → Dense(2, Softmax) |
+| **Optimizer / Loss**  | Adam (1e-4) / Categorical Crossentropy                                     |
+| **Data Augmentation** | Rotation, shift, zoom, flip                                                |
+| **Explainability**    | Grad-CAM on layer `conv5_block3_out`                                       |
+
+---
+
+## ⚙️ Training
+
+```bash
+python src/train_model.py \
+  --train_dir data/TRAIN \
+  --val_dir data/VAL \
+  --epochs 25 \
+  --batch_size 32 \
+  --unfreeze_at 135 \
+  --artifacts artifacts
+```
+
+Results saved to:
+
+* `artifacts/model.h5`
+* `artifacts/history.json`
+* `artifacts/classification_report.txt`
+* `artifacts/confusion_matrix.png`
+
+---
+
+## ✅ Evaluation
+
+```bash
+python src/evaluate_model.py --model_path artifacts/model.h5 --test_dir data/TEST
+```
+
+Example metrics:
+
+```
+Accuracy: 94%
+Precision: 0.94
+Recall: 0.94
+F1-Score: 0.935
+```
+
+Confusion matrix image → `artifacts/confusion_matrix.png`
+
+---
+
+## 🔬 Ablation Study
+
+To compare different model setups (head sizes & layer unfreezing):
+
+```bash
+python src/ablation.py --train_dir data/TRAIN --val_dir data/VAL
+```
+
+Example result (`artifacts/ablation.json`):
+
+```json
+{
+  "head_128_unfreeze_0": {"val_accuracy": 0.91},
+  "head_256_unfreeze_40": {"val_accuracy": 0.94}
+}
+```
+
+✅ Best setup: **256 head units + last 40 layers trainable**
+
+---
+
+## 🧪 Robustness Check
+
+Tests how well the model handles noise (simulates blurry or low-quality images):
+
+```bash
+python src/evaluate_noise.py --model_path artifacts/model.h5 --test_dir data/TEST
+```
+
+Result (`artifacts/noise_eval.json`):
+
+```json
+{
+  "clean_acc": 0.94,
+  "noisy_acc": 0.85,
+  "drop_acc_percent": 9.0
+}
+```
+
+⚠️ Shows around **9–10% accuracy drop** with noise — realistic for mobile camera inputs.
+
+---
+
+## 🔍 Explainability (Grad-CAM)
+
+**Grad-CAM** shows *why* the model made a prediction.
+
+| Image                   | Heatmap                                                  | Insight |
+| ----------------------- | -------------------------------------------------------- | ------- |
+| Organic waste           | Focus on food texture (correct)                          |         |
+| Plastic bottle on grass | Focus on green background → false “Organic” (bias found) |         |
+
+Files in: `samples/gradcam_examples/`
+
+---
+
+## 🌐 Web App (Streamlit)
+
+Run locally:
+
+```bash
+streamlit run app/streamlit_app_v2.py
+```
+
+Features:
+
+* Upload images (single or multiple)
+* Shows prediction + confidence
+* Displays Grad-CAM heatmap
+* Saves recent history
+* Works with `.tflite` lightweight model
+
+Deploy with quantized model (≈25 MB):
+
+```bash
+python src/convert_to_tflite.py --h5 artifacts/model.h5 --quant float16
+```
+
+---
+
+## ♻️ Sustainability Impact
+
+* Real-world manual sorting accuracy ≈ **75–83%** (based on U.S. recycling studies, 2023–24).
+* Model accuracy: **94%**
+* **Improvement:** ~13–25% better (if validated with real images).
+
+⚠️ *Claim only after testing on real-world waste data.*
+
+---
+
+## 🧰 Reproducibility & Tests
+
+Run tests:
+
+```bash
+python -m unittest discover -s tests
+```
+
+Checks:
+
+* Model loads correctly
+* Makes valid predictions
+* Grad-CAM heatmap values are valid
+
+✅ GitHub Actions automatically runs tests on every push.
+
+---
+
+## 🧩 Tech Stack
+
+| Category       | Tools                  |
+| -------------- | ---------------------- |
+| Framework      | TensorFlow / Keras     |
+| Explainability | Grad-CAM               |
+| Frontend       | Streamlit              |
+| Deployment     | TensorFlow Lite        |
+| Environment    | Docker, GitHub Actions |
+
+---
+
+## 👨‍💻 Author
+
+**Bhuvan (Rocks)**
+Machine Learning Developer | Explainable AI & Sustainability
+🔗 [GitHub](https://github.com/bhuvn24)
+
+---
+
+## 🧾 License
+
+**MIT License** — free to use and modify with credit.
+
+---
+
+## 🔖 Summary
+
+EcoVision is an end-to-end ML project showing:
+
+* Real reproducibility (seeded splits + artifacts)
+* Explainable AI (Grad-CAM)
+* Model robustness (noise tests)
+* Easy web deployment (Streamlit + TFLite)
+
+> 💬 “No hype. Just transparent, testable machine learning.”
+
+```
+
+---
+
+### ⚡ Why this version works:
+- **Readable:** Straightforward wording, short sentences, clear examples.  
+- **Professional:** No buzzwords or filler.  
+- **Review-friendly:** Each section leads with *what to run* and *what file it creates*.  
+- **Human-readable:** Could be explained to a hiring manager or peer without jargon.  
+
+---
+
+Would you like me to now make a **shorter version (1-page README)** for your GitHub landing page — something that fits perfectly on-screen and links to this full README as `/docs/full_README.md`? That’s often what recruiters or project reviewers prefer to skim.
+```
 
 # 🌱 **EcoVision v2.5 — Explainable Waste Classification with Deep Learning**
 
