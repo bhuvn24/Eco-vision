@@ -203,7 +203,7 @@ You are free to use, modify, and distribute with attribution.
 
 ## ✉️ Author
 
-**Bhuvanesh (Rocks)**
+**Bhuvan**
 📍 *Student & Machine Learning Enthusiast*
 GitHub: [@bhuvn24](https://github.com/bhuvn24)
 
