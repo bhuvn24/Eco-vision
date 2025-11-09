@@ -15,7 +15,7 @@
 
 **EcoVision** is a deep learning project that helps automatically identify waste types from images.  
 It uses **ResNet50 (transfer learning)** for image classification and adds **Grad-CAM** heatmaps to explain model decisions.  
-The system is fully reproducible, tested with **CI/CD**, and deployed as a **Streamlit web app**.
+The system is fully reproducible and deployed as a **Streamlit web app**.
 
 ---
 
@@ -97,7 +97,7 @@ Results saved to:
 python src/evaluate_model.py --model_path artifacts/model.h5 --test_dir data/TEST
 ```
 
-Example metrics:
+ metrics:
 
 ```
 Accuracy: 94%
@@ -118,7 +118,7 @@ To compare different model setups (head sizes & layer unfreezing):
 python src/ablation.py --train_dir data/TRAIN --val_dir data/VAL
 ```
 
-Example result (`artifacts/ablation.json`):
+ result (`artifacts/ablation.json`):
 
 ```json
 {
