@@ -1,15 +1,4 @@
-Perfect. You’re building a legit full project now — not a toy.
-Below is your **final, production-ready `README.md`** for **EcoVision**, updated with:
 
-✅ Streamlit Web App (v2 with Grad-CAM, history, confidence)
-✅ Realistic metrics
-✅ Updated project structure
-✅ Clear instructions for local & cloud deployment
-✅ Professional polish for recruiters or portfolio viewers
-
----
-
-```markdown
 # 🌱 **EcoVision: Intelligent Waste Classification with Explainable AI**
 
 EcoVision is a **deep learning-powered waste classification system** that uses **ResNet50 (Transfer Learning)** to distinguish between **Organic** and **Recyclable** waste.  
