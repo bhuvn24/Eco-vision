@@ -1,4 +1,4 @@
-# Eco-Vision : Waste Management Using CNN Model
+# Eco-Vision : Intelligent Waste Classification using CNN
 
 ## Project Overview
 This project focuses on building a Convolutional Neural Network (CNN) model to classify waste into categories such as "Organic" and "Recyclable." The goal is to automate waste classification processes, making them more efficient and accurate. By leveraging deep learning frameworks such as TensorFlow and Keras, this project showcases the potential of artificial intelligence in solving environmental challenges.
